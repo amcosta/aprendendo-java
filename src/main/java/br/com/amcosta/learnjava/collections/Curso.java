@@ -7,10 +7,20 @@ import java.util.List;
 public class Curso {
 
     private String nome;
+    private String instrutor;
     private List<Aula> aulas = new ArrayList<>();
 
-    public Curso(String nome) {
+    public Curso(String nome, String instrutor) {
         this.nome = nome;
+        this.instrutor = instrutor;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getInstrutor() {
+        return instrutor;
     }
 
     public void adicionar(Aula aula) {
@@ -20,6 +30,5 @@ public class Curso {
     public List getAulas() {
         return Collections.unmodifiableList(aulas);
     }
-
 
 }
