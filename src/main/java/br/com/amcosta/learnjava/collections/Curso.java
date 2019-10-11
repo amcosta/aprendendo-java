@@ -31,4 +31,12 @@ public class Curso {
         return Collections.unmodifiableList(aulas);
     }
 
+    public int getTempoTotal() {
+        return aulas.stream().mapToInt(Aula::getTempo).sum();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Curso: %s, tempo: %d", nome, getTempoTotal());
+    }
 }

@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CursoTest {
@@ -39,5 +40,29 @@ public class CursoTest {
         Curso curso = this.construirCurso();
         List<Aula> aulas = curso.getAulas();
         aulas.add(new Aula("Nova aula", 9));
+    }
+
+    @Test
+    public void testOrdenandoAsAulasPeloNome() {
+        Curso curso = this.construirCurso();
+        List<Aula> aulas = new ArrayList<>(curso.getAulas());
+
+        Collections.sort(aulas);
+
+        Assert.assertEquals("Listas de objetos", aulas.get(0).getTitulo());
+        Assert.assertEquals("Relacionamento de listas e objetos", aulas.get(1).getTitulo());
+        Assert.assertEquals("Revistando as ArrayLists", aulas.get(2).getTitulo());
+    }
+
+    @Test
+    public void testSomarOTempoDasAulasParaOCurso() {
+        Curso curso = this.construirCurso();
+        Assert.assertEquals(56, curso.getTempoTotal());
+    }
+
+    @Test
+    public void testCursoToString() {
+        Curso curso = this.construirCurso();
+        Assert.assertEquals("Curso: Dominando Coleções, tempo: 56", curso.toString());
     }
 }
