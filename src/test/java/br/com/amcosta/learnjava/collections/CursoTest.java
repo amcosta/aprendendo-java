@@ -89,4 +89,10 @@ public class CursoTest {
         Set<Aluno> alunos = this.curso.getAlunos();
         alunos.add(new Aluno("Neymar Santos", 111));
     }
+
+    @Test
+    public void testVerificarSeOAlunoEstaMatriculado() {
+        this.curso.matricular(new Aluno("Alex Moreno", 123));
+        Assert.assertTrue(this.curso.estaMatriculado(new Aluno("Alex Moreno", 123)));
+    }
 }
