@@ -1,13 +1,22 @@
 package br.com.amcosta.learnjava.collections;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class CursoTest {
+
+    private Curso curso;
+
+    @Before
+    public void setUpBefore() {
+        this.curso = this.construirCurso();
+    }
 
     private List construirAulas() {
         List<Aula> aulas = new ArrayList<>();
@@ -64,5 +73,20 @@ public class CursoTest {
     public void testCursoToString() {
         Curso curso = this.construirCurso();
         Assert.assertEquals("Curso: Dominando Coleções, tempo: 56", curso.toString());
+    }
+
+    @Test
+    public void testAdicionarAlunosAoCurso() {
+        this.curso.matricular(new Aluno("Alex Moreno", 123));
+        this.curso.matricular(new Aluno("Talita Rodrigues", 456));
+        this.curso.matricular(new Aluno("Danilo Costa", 789));
+
+        Assert.assertEquals(3, this.curso.getAlunos().size());
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testNaoDeveModificarAListaDeAlunos() {
+        Set<Aluno> alunos = this.curso.getAlunos();
+        alunos.add(new Aluno("Neymar Santos", 111));
     }
 }
