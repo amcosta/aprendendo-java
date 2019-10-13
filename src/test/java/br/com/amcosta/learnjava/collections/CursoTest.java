@@ -95,4 +95,15 @@ public class CursoTest {
         this.curso.matricular(new Aluno("Alex Moreno", 123));
         Assert.assertTrue(this.curso.estaMatriculado(new Aluno("Alex Moreno", 123)));
     }
+
+    @Test
+    public void testBuscarAlunoPelaMatricula() {
+        this.curso.matricular(new Aluno("Alex Moreno", 123));
+        this.curso.matricular(new Aluno("Talita Rodrigues", 456));
+        this.curso.matricular(new Aluno("Danilo Costa", 789));
+
+        Aluno aluno = this.curso.buscaMatriculado(123);
+        Assert.assertTrue(aluno instanceof Aluno);
+        Assert.assertEquals("Alex Moreno", aluno.getNome());
+    }
 }
